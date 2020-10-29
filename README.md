@@ -1,4 +1,4 @@
-# bash_scripts
+# Bash Scripts
 
 Bash scripts written for UNIX/LINUX based machines.
 
