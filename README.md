@@ -3,7 +3,6 @@
 Bash scripts written for UNIX/LINUX based machines.
 
 # Local git initializer
-If you have job or working on projects, probably, you have one personal and one job related accounts. Moreover, most probably you defined one of the account as global account. This script enable your project to configure individually.
-
+If you have a job or work on projects, you probably have one personal and one job-related account. Moreover, most probably, you have already defined one of the accounts as a global account. This script enables you to change your `git config` in one go. You do not need to search the web or remember a series of git codes. It is easy to use.
 
 If you have any question, you are feel free to contact me via kaan_taha_koken@hotmail.com or kaan.koken@metu.edu.tr
