@@ -8,7 +8,6 @@ IP=""
 attach_status="0"
 deattach_status="0"
 
-echo "$attach_status"
 function _initialize() {
     if [[ "$attach_status" = *"0"* ]]; then
         adb start-server
