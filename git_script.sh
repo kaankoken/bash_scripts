@@ -89,6 +89,18 @@ function _initialize_local_git() {
     _update_local_git
 }
 
+function _initialize_local_repo() {
+    _initialize_local_git
+    OUTPUT=$(git remote -v)
+
+    if [ ! "${OUTPUT}" == "" ]; then
+        echo "${OUTPUT}"
+    else
+        read -p "Please enter remote address" remote
+        git remote add origin "$remote"
+    fi
+}
+
 function _usage() {
   ###### U S A G E : Help and ERROR ######
     cat <<EOF
@@ -99,7 +111,8 @@ function _usage() {
                 -v   --version        Shows the version of script
                 -c   --create         Save github account info to local and changes it for you
                 -r   --renew          Renew the account information
-                -i   --initialize     Initialize given accounts to project
+                -i   --initialize     Attach given accounts to project
+                -l   --local          Initialize local repository from beginning
                 -h   --help           Show this message
                 -A   --arguments=...  Set arguments to yes ($arguments) AND get ARGUMENT ($ARG)
                 -F   --foobar         Set foobar to yes ($foobar)
@@ -114,7 +127,8 @@ while getopts ':vcrhi-A:F' OPTION ; do
     c  ) _create_info "$create_title"                  ;;
     r  ) _renew_info "$renew_title"                    ;;
     h  ) _usage                                        ;;
-    i  ) _initialize_local_git                         ;;   
+    i  ) _initialize_local_git                         ;;
+    l  )                                               ;;
     A  ) sarguments=yes;sARG="$OPTARG"                 ;;
     F  ) sfoobar=yes                                   ;;
     -  ) [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1 ) || optind=$OPTIND
@@ -126,6 +140,7 @@ while getopts ':vcrhi-A:F' OPTION ; do
             --renew      ) _renew_info "$renew_title"                    ;;
             --create     ) _create_info "$create_title"                  ;;
             --initialize ) _initialize_local_git                         ;;
+            --local      )                                               ;;
             --foobar     ) lfoobar=yes                                   ;;
             --help       ) _usage                                        ;;
             --arguments  ) larguments=yes;lARG="$OPTARG"                 ;; 
